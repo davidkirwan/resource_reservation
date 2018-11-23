@@ -1,3 +1,2 @@
-== Clusterlist Bot ==
-asdf
-
+== Resource Reservation ==
+Eventually will be capable of acting as a google hangouts bot. (heh)
