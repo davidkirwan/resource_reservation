@@ -13,7 +13,7 @@ require 'puma'
 require File.join(File.dirname(__FILE__), '/lib/api')
 
 
-module Clusterlist
+module ResourceReservation
 class App < Sinatra::Base
   ##### Variables
   enable :static, :sessions, :logging

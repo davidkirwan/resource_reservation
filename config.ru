@@ -1,3 +1,3 @@
 require File.join(File.dirname(__FILE__), '/resource_reservation.rb')
 
-run Clusterlist::App
+run ResourceReservation::App
