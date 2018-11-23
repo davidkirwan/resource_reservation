@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>Cluster List</title>
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+</head>
+<script src="jquery-2.1.3.min.js"></script>
+<script type="text/javascript">
+  setTimeout(function(){
+    location = '/'
+  },30000)
+</script>
+<script>
+function ajax_delete(key){
+  $.ajax({
+    type: "DELETE",
+    url: "/reservations/" + key,
+    success: function(data){
+      var enablebutton = "submit_button";
+      $("#"+enablebutton).addClass("enabled");
+      location='/';
+    }
+  });
+}
+</script>
+<body>
+<a href="/"><img src="/resource_reservation.png"></a>
+<p>An open source resource reservation booking system.</p>
+  <table style="width:100%">
+  <tr>
+    <th>Resource Name</th>
+    <th>Reserved by</th>
+    <th>Reservation date</th>
+    <th>Reserve/Unreserve Resource</th>
+  </tr>
+  <% reservations.each do |key,val| %>
+  <tr>
+    <td><%= key %></a></td>
+    <td>
+      <% if val["reservation_username"].nil? %>
+        -
+      <% else %>
+        <%= val["reservation_username"] %>
+      <% end %>
+    </td>
+    <td>
+      <%= if val["reservation_date"].nil? then "-"; else Time.at(val["reservation_date"]); end %>
+    </td>
+    <td>
+      <% if val["reservation_username"].nil? %>
+	<a href="/reservations/<%= key %>/new">new</a>
+      <% else %>
+	<input type="button" onmouseover='ajax_delete("<%= key %>");' value="delete">
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>Create Reservation</title>
+<script src="/jquery-2.1.3.min.js"></script>
+<script>
+function ajax_post(){
+  var disablebutton = "submit_button";
+  $("#"+disablebutton).addClass("disabled");
+
+  var user_name = $('#reservation_username').val();
+
+  var data = { 
+    reservation_username : user_name
+   };
+
+  $.ajax({
+    type: "POST",
+    url: "/reservations/<%= resource %>",
+    data: data,
+    success: function(data){
+      var enablebutton = "submit_button";
+      $("#"+enablebutton).addClass("enabled");
+      location = '/';
+    }
+  });
+}
+</script>
+</head>
+<body>
+<a href="/"><img src="/resource_reservation.png"></a>
+<h3>Create a new reservation for <%= resource %></h3>
+<p></p>
+<form>
+  Name: <input type="text" id="reservation_username" name="reservation_username" onfocus="this.value=''"><br>
+</form>
+<button id="submit_button" onmousedown="ajax_post();">Submit</button>
+</body>
+</html>
