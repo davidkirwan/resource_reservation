@@ -53,7 +53,7 @@ function ajax_delete(key){
       <% if val["reservation_username"].nil? %>
 	<a href="/reservations/<%= key %>/new">new</a>
       <% else %>
-	<input type="button" onmouseover='ajax_delete("<%= key %>");' value="delete">
+	<input type="button" onclick='ajax_delete("<%= key %>");' value="delete">
       <% end %>
     </td>
   </tr>
