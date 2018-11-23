@@ -17,7 +17,7 @@ module ResourceReservation
 class App < Sinatra::Base
   ##### Variables
   enable :static, :sessions, :logging
-  set :server, :puma
+  #set :server, :puma
   set :environment, :production
   set :root, File.dirname(__FILE__)
   set :public_folder, File.join(root, '/public')
@@ -32,7 +32,6 @@ class App < Sinatra::Base
   # Options hash
   set :options, {:log => settings.log, :level => settings.level}
 #########################################################################################################
-  API.load_reservations()
 
   four_oh_four_messages = [
     "404 listen Linda",
