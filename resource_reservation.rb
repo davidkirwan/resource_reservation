@@ -49,6 +49,12 @@ class App < Sinatra::Base
     erb :index, :locals => {:reservations => reservations}
   end
 
+  get '/json' do
+    reservations = API.list_reservations()
+    settings.log.debug reservations
+    [200, {"Content-Type" => "application/json"},reservations.to_json]
+  end
+
   # Create reservation form
   get '/reservations/:resource/new' do |resource|
     settings.log.debug "GET /reservations/#{resource}/new"
